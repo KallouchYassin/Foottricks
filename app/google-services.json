@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "51698656278",
+    "project_id": "foottricks-bbce2",
+    "storage_bucket": "foottricks-bbce2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51698656278:android:7b68e6563b190ce24bc137",
+        "android_client_info": {
+          "package_name": "com.example.foottricks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51698656278-hjq2bsuml7meomia1u90cth3nbdv94hj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAreesrpZCghQ_O_iWsi_27S9JYfIMspWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51698656278-hjq2bsuml7meomia1u90cth3nbdv94hj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
