@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "51698656278",
-    "project_id": "foottricks-bbce2",
-    "storage_bucket": "foottricks-bbce2.appspot.com"
+    "project_number": "359302995301",
+    "firebase_url": "https://foottricks-5a2f5-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "foottricks-5a2f5",
+    "storage_bucket": "foottricks-5a2f5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:51698656278:android:7b68e6563b190ce24bc137",
+        "mobilesdk_app_id": "1:359302995301:android:7f88488d0d6b54020cd58c",
         "android_client_info": {
           "package_name": "com.example.foottricks"
         }
       },
       "oauth_client": [
         {
-          "client_id": "51698656278-hjq2bsuml7meomia1u90cth3nbdv94hj.apps.googleusercontent.com",
+          "client_id": "359302995301-au26kicjl4lq5c4s1gc5kcnjd13vdeog.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAreesrpZCghQ_O_iWsi_27S9JYfIMspWU"
+          "current_key": "AIzaSyCB9KEf4GJyaJV3buwi2GXhmy60g6_Cf6w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "51698656278-hjq2bsuml7meomia1u90cth3nbdv94hj.apps.googleusercontent.com",
+              "client_id": "359302995301-au26kicjl4lq5c4s1gc5kcnjd13vdeog.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

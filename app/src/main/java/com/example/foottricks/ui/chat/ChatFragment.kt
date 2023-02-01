@@ -1,24 +1,31 @@
 package com.example.foottricks.ui.chat
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.foottricks.databinding.FragmentCalendarBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.foottricks.activity.LoginActivity
 import com.example.foottricks.databinding.FragmentChatBinding
-import com.example.foottricks.ui.calendar.CalendarViewModel
+import com.example.foottricks.model.Users
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
     private val binding get() = _binding!!
 
+    private lateinit var adapter: ChatAdapter
+    private lateinit var mainUserRecyclerView: RecyclerView
+
+    private lateinit var usersArrayList: ArrayList<Users>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,13 +33,51 @@ class ChatFragment : Fragment() {
     ): View {
         val fragmentChatBinding =
             ViewModelProvider(this).get(ChatViewModel::class.java)
-
         _binding = FragmentChatBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        val currentUserUid = auth.currentUser!!.uid
 
-        val textView: TextView = binding.textChat
-        fragmentChatBinding.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+        var databaseRef: DatabaseReference = database.getReference("users")
+
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                usersArrayList= ArrayList<Users>();
+                    for (dataSnapshot in snapshot.children) {
+
+                        val users = dataSnapshot.getValue(Users::class.java)
+                        if (users!!.uuid!=currentUserUid)
+                        {
+                            usersArrayList.add(users!!)
+                        }
+
+                    }
+
+
+
+
+                mainUserRecyclerView = binding.userRecyclerview
+                mainUserRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+                adapter= ChatAdapter(usersArrayList, context!!);
+                mainUserRecyclerView.adapter=adapter;
+                adapter.notifyDataSetChanged();
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
+
+
+        if (auth.currentUser == null) {
+
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+
         }
         return root
     }

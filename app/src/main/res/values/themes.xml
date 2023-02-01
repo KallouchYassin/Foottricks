@@ -14,4 +14,13 @@
     <style name="Theme.Foottricks.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Foottricks.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+<style name="Dialoge">
+    <item name="android:windowBackground">@drawable/empty_back</item>
+    <item name="windowNoTitle">true</item>
+    <item name="windowMinWidthMajor">80%</item>
+    <item name="windowActionBar">false</item>
+
+</style>
+
 </resources>

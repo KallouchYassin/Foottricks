@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <ImageButton
+        android:id="@+id/imgToolbarBtnBack"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="4dp"
+        android:background="@drawable/btn_bg2"
+        android:paddingBottom="8dp"
+        android:src="@drawable/ic_back" />
+    <ImageView
+        android:layout_width="45dp"
+        android:background="@drawable/btn_bg2"
+        android:layout_height="45dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_baseline_logout_24"
+        android:id="@+id/btn_logout"
+        android:layout_centerHorizontal="true"
+        app:tint="@color/white"
+
+        android:layout_alignParentEnd="true"
+        />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="166dp"
+        android:layout_below="@id/btn_logout"
+        android:layout_height="166dp"
+        android:src="@drawable/profile"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+       />
+
+
+
+
+</RelativeLayout>
