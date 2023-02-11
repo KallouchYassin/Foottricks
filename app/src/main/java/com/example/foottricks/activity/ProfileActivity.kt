@@ -39,7 +39,11 @@ class ProfileActivity : AppCompatActivity() {
                 //retrieving the user name
                 var imageUri =
                     dataSnapshot.child("imageUri").getValue(String::class.java)
-
+                var profilelastName =
+                    dataSnapshot.child("lastname").getValue(String::class.java)
+                var profilefirstName =
+                    dataSnapshot.child("firstname").getValue(String::class.java)
+binding.profileName.text= "$profilefirstName $profilelastName";
                 Picasso.get().load(imageUri).into(binding.profileImage)
 
             }

@@ -4,6 +4,10 @@
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/brown</item>
+        <item name="android:fontFamily">@font/gilroy_light</item>
+        <item name="fontFamily">@font/gilroy_light</item>
+     <!-- target android sdk versions < 26 and > 14 if theme other than AppCompat -->
+
     </style>
 
     <style name="Theme.Foottricks.NoActionBar">

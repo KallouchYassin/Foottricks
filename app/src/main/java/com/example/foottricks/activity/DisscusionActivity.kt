@@ -84,6 +84,7 @@ class DisscusionActivity : AppCompatActivity() {
 
         chatReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                messagesArrayList.clear();
                 for (dataSnapshot in snapshot.children) {
 
                     val messages = dataSnapshot.getValue(Messages::class.java)
@@ -139,7 +140,7 @@ class DisscusionActivity : AppCompatActivity() {
                 }
         }
         binding.imgToolbarBtnBack.setOnClickListener {
-            it.setBackgroundColor(Color.RED)
+            it.setBackgroundColor(Color.rgb(44,244,224))
             finish()
 
         }

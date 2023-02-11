@@ -18,5 +18,9 @@
             android:id="@+id/nav_chat"
             android:icon="@drawable/ic_baseline_chat_24"
             android:title="@string/menu_chat" />
+        <item
+            android:id="@+id/nav_team"
+            android:icon="@drawable/ic_baseline_sports_soccer_24"
+            android:title="@string/menu_team" />
     </group>
 </menu>

@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/profileView"
+    android:background="@drawable/custom_background"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
     <ImageButton
         android:id="@+id/imgToolbarBtnBack"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="start"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -22,9 +24,9 @@
         android:paddingBottom="8dp"
         android:src="@drawable/ic_back" />
     <ImageView
-        android:layout_width="45dp"
+        android:layout_width="30dp"
         android:background="@drawable/btn_bg2"
-        android:layout_height="45dp"
+        android:layout_height="30dp"
         android:layout_gravity="start"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -44,10 +46,274 @@
         android:layout_width="166dp"
         android:layout_below="@id/btn_logout"
         android:layout_height="166dp"
-        android:src="@drawable/profile"
+        android:src="@mipmap/ic_profile_image"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_profile"
+android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gilroy_bold"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:text="Player name"
+                android:id="@+id/profileName"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_tshirt_round"/>
+
+
+                    <TextView
+                        android:id="@+id/profileNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="10sp"
+                        android:textColor="@color/hintTextColor"
+                        android:maxEms="10"
+                        android:maxLines="2"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/gilroy_light"
+                        android:paddingTop="10dp"
+                        android:paddingStart="5dp"
+                        android:paddingBottom="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_postion"/>
+
+
+                    <TextView
+                        android:id="@+id/profilePosition"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="10sp"
+                        android:textColor="@color/hintTextColor"
+                        android:maxEms="10"
+                        android:maxLines="2"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/gilroy_light"
+                        android:paddingTop="10dp"
+                        android:paddingStart="5dp"
+                        android:paddingBottom="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_age"/>
+
+
+                    <TextView
+                        android:id="@+id/profileAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="10sp"
+                        android:textColor="@color/hintTextColor"
+                        android:maxEms="10"
+                        android:maxLines="2"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/gilroy_light"
+                        android:paddingTop="10dp"
+                        android:paddingStart="5dp"
+                        android:paddingBottom="10dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Results"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_above="@+id/card_results"
+        android:textColor="@color/black"
+        android:fontFamily="@font/gilroy_bold"
+        android:layout_marginBottom="10dp"
+        />
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="290dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/card_results"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+       android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+         android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gilroy_light"
+
+                android:padding="10dp"
+                android:text="0 \n Games Played"
+                android:textAlignment="center"
+android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_light"
+                        android:maxEms="10"
+                        android:background="@drawable/circle_background"
+                        android:maxLines="2"
+                     android:padding="8dp"
+                        android:textAlignment="center"
+                        android:text="0 \n Wins"
+                        android:textColor="@color/hintTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+
+                    android:orientation="horizontal">
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_light"
+                        android:maxEms="10"
+                        android:background="@drawable/circle_background"
+                        android:maxLines="2"
+                        android:padding="8dp"
+                        android:layout_marginLeft="44dp"
+
+                        android:layout_marginRight="40dp"
+                        android:textAlignment="center"
+                        android:text="0 \n Draws"
+                        android:textColor="@color/hintTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroy_light"
+                        android:maxEms="10"
+                        android:background="@drawable/circle_background"
+                        android:maxLines="2"
+                        android:padding="8dp"
+                        android:textAlignment="center"
+                        android:text="0 \n Defeats"
+                        android:textColor="@color/hintTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 
 

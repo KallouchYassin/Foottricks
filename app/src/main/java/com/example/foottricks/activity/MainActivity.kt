@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,8 +32,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var user: FirebaseUser
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
 
 
+    public override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        Log.d("test",currentUser.toString())
+        if(currentUser == null){
+            var intent = Intent(this@MainActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance();
@@ -42,7 +54,15 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
         user = auth.currentUser!!
 
-
+//        var databaseref = FirebaseDatabase.getInstance().getReference("trainings");
+//
+//        databaseref.removeValue()
+//            .addOnSuccessListener {
+//                Log.d("TAG", "Data successfully deleted.")
+//            }
+//            .addOnFailureListener {
+//                Log.w("TAG", "Failed to delete data.", it)
+//            }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val hView = navView.getHeaderView(0)
@@ -60,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_chat, R.id.nav_calendar
+                R.id.nav_home, R.id.nav_chat, R.id.nav_calendar,R.id.nav_team
             ), drawerLayout
         )
 
@@ -68,34 +88,29 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
-        } else {
-
-            textViewEmail.text = user.email;
-            textViewName.text = user.displayName
         }
 
 
 
-        binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         val currentUser = FirebaseAuth.getInstance().currentUser
         val uid = currentUser?.uid
-        Log.d("Name", uid!!)
+
         val userRef = FirebaseDatabase.getInstance().reference.child("users").child(uid!!)
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 //retrieving the user name
                 val email = dataSnapshot.child("email").getValue(String::class.java)
-                val name = dataSnapshot.child("name").getValue(String::class.java)
+                val lastname = dataSnapshot.child("lastname").getValue(String::class.java)
+                val firstname = dataSnapshot.child("firstname").getValue(String::class.java)
+
                val imgProfile= dataSnapshot.child("imageUri").getValue(String::class.java)
                 Picasso.get().load(imgProfile).into(profileImg)
 
                 textViewEmail.text = email
-                textViewName.text = name
+                textViewName.text = "$firstname $lastname";
 
             }
 
@@ -115,5 +130,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 
 }

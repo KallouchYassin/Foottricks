@@ -8,6 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/shape_dialog"
     android:layout_margin="10dp"
+    android:elevation="5dp"
     >
 
     <ImageView
@@ -44,7 +45,7 @@ android:id="@+id/noBtn"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_margin="10dp"
-android:background="#ADFF9A00"
+android:background="@color/yellow"
             android:id="@+id/yesBtn"
 
             android:text="Yes"

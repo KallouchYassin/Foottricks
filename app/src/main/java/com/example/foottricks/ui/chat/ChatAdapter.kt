@@ -52,14 +52,14 @@ public class ChatAdapter(
 
 
             holder.user_email.text = users.email;
-            holder.user_name.text = users.name;
+            holder.user_name.text = users.firstname +" "+users.lastname;
             Picasso.get().load(users.imageUri).into(holder.user_img)
 
             holder.itemView.setOnClickListener {
 
 
                 val intent = Intent(chatFragment, DisscusionActivity::class.java)
-                intent.putExtra("name", users.name)
+                intent.putExtra("name", users.firstname +" "+users.lastname)
                 intent.putExtra("receiverImg", users.imageUri)
 
                 intent.putExtra("uid", users.uuid)

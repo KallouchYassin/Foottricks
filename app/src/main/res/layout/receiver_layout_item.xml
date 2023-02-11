@@ -8,7 +8,7 @@
         android:id="@+id/profile_image"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/profile"
+        android:src="@mipmap/ic_profile_image"
         android:layout_margin="5dp"
         android:layout_marginTop="10dp"
         android:layout_alignParentLeft="true"

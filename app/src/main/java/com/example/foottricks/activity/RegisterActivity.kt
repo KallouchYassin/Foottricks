@@ -38,11 +38,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegister2Binding.inflate(layoutInflater);
         setContentView(binding.root);
         database = FirebaseDatabase.getInstance();
-//        binding.info.setOnClickListener{
-//            var intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
+
 
 
         val database = FirebaseDatabase.getInstance()
@@ -56,8 +52,6 @@ class RegisterActivity : AppCompatActivity() {
                 val adapter =
                     ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, items)
 
-                Log.d("pute", items.get(0).toString())
-                Log.d("test: ", data.toString())
                 val spinner = findViewById<Spinner>(R.id.team);
                 spinner.adapter = adapter;
 
@@ -86,25 +80,25 @@ class RegisterActivity : AppCompatActivity() {
             binding.progressBa2r.visibility = View.VISIBLE
             val email = binding.email.text
             val password = binding.password.text
-            val phone = binding.phone.text
+            val firstname = binding.firstname.text
             val repassword = binding.repassword.text
-            val name = binding.username.text
+            val lastname = binding.lastname.text
             val team = binding.team.selectedItem.toString()
 
 
-            if (email.isEmpty() || password.isEmpty() || phone.isEmpty() || repassword.isEmpty() || name.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty() || firstname.isEmpty() || repassword.isEmpty() || lastname.isEmpty()) {
                 if (email.isEmpty()) {
                     binding.progressBa2r.visibility = View.GONE
 
                     binding.email.error = "Entre email";
                 }
-                if (phone.isEmpty()) {
+                if (firstname.isEmpty()) {
                     binding.progressBa2r.visibility = View.GONE
-                    binding.phone.error = "Entre phone";
+                    binding.firstname.error = "Entre phone";
                 }
-                if (name.isEmpty()) {
+                if (lastname.isEmpty()) {
                     binding.progressBa2r.visibility = View.GONE
-                    binding.username.error = "Entre name";
+                    binding.lastname.error = "Entre name";
                 }
                 if (repassword.isEmpty()) {
                     binding.progressBa2r.visibility = View.GONE
@@ -121,10 +115,10 @@ class RegisterActivity : AppCompatActivity() {
                 binding.email.error = "Enter valid email address"
                 Toast.makeText(this, "Enter valid email address", Toast.LENGTH_SHORT).show();
                 binding.progressBa2r.visibility = View.GONE
-            } else if (phone.length != 10) {
-                binding.phone.error = "Enter a valid number phone"
+            } else if (firstname.length <3 ) {
+                binding.firstname.error = "Enter a valid name"
                 binding.progressBa2r.visibility = View.GONE
-                Toast.makeText(this, "Enter a valid number phone", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Enter a valid name", Toast.LENGTH_SHORT).show();
 
             } else if (password.length < 6) {
                 binding.password.error = "Password must contain at leats 6 chars"
@@ -147,8 +141,8 @@ class RegisterActivity : AppCompatActivity() {
                             val databaseref =
                                 database.reference.child("users").child(auth.currentUser!!.uid)
                             val users: Users = Users(
-                                name.toString(), email.toString(),
-                                phone.toString(), auth.currentUser!!.uid, team.toString(), imageUri
+                                lastname.toString(),firstname.toString(), email.toString(),null,
+                                 auth.currentUser!!.uid, team.toString(), imageUri
                             )
                             databaseref.setValue(users).addOnCompleteListener {
                                 if (it.isSuccessful) {

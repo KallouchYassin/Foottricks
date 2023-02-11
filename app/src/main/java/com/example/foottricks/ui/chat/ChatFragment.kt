@@ -2,6 +2,7 @@ package com.example.foottricks.ui.chat
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,16 @@ class ChatFragment : Fragment() {
     private lateinit var mainUserRecyclerView: RecyclerView
 
     private lateinit var usersArrayList: ArrayList<Users>
+    public override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        Log.d("test", currentUser.toString())
+        if (currentUser == null) {
+            var intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
