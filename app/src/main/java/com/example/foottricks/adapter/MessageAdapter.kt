@@ -68,7 +68,8 @@ class MessageAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-var messages=messagesList.get(position);
+
+        var messages=messagesList.get(position);
         if (holder is SenderViewholder) {
             val senderViewHolder = holder as SenderViewholder
             senderViewHolder.txtmsg.setText(messages.message)

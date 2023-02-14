@@ -7,16 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foottricks.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
-class DialogAdapter(
-    private val userList: ArrayList<Users>,
-    private val context: Context,
-    private val uuid: String
+class DialogMotmAdapter (
+private val userList: ArrayList<Users>,
+private val context: Context,
+private val uuid: String,
+private val UserUuid: String
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
@@ -29,7 +31,6 @@ class DialogAdapter(
     }
 
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var place: CheckBox = itemView.findViewById(com.example.foottricks.R.id.test)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -44,32 +45,33 @@ class DialogAdapter(
         var check = holder.itemView.findViewById<CheckBox>(com.example.foottricks.R.id.test)
 
         holder.itemView.findViewById<CheckBox>(com.example.foottricks.R.id.test).text =
-        userList.get(position).firstname + " " + userList.get(position).lastname
-    check.setOnCheckedChangeListener { buttonView, isChecked ->
+            userList.get(position).firstname + " " + userList.get(position).lastname
+        check.setOnCheckedChangeListener { buttonView, isChecked ->
 
-        if (isChecked)
-        {
-            database = FirebaseDatabase.getInstance()
-            database.reference.child("matches").child(uuid).child("summon").push()
-                .setValue(userList.get(position)).addOnCompleteListener {
+            if (isChecked)
+            {
+                database = FirebaseDatabase.getInstance()
+                database.reference.child("matches").child(uuid).child("motm").child(UserUuid)
+                    .setValue(userList.get(position)).addOnCompleteListener {
 
-                    Log.d("reussi", "oui")
-                }
+                        Log.d("reussi", "oui")
+                    }
+            }
+            else{
+                database = FirebaseDatabase.getInstance()
+                database.reference.child("matches").child(uuid).child("motm").child(UserUuid)
+                    .removeValue().addOnCompleteListener {
+
+                        Log.d("reussi", "oui")
+                    }
+            }
+
         }
-        else{
-            database = FirebaseDatabase.getInstance()
-            database.reference.child("matches").child(uuid).child("summon")
-                .removeValue().addOnCompleteListener {
-
-                    Log.d("reussi", "oui")
-                }
-        }
-
-    }
 
     }
 
     override fun getItemCount(): Int {
         return userList.size;
     }
+
 }

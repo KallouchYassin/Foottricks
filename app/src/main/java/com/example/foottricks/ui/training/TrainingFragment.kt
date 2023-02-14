@@ -125,7 +125,6 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 TODO("Not yet implemented")
             }
         })
-
         binding.checkboxReccurency.setOnCheckedChangeListener { buttonView, isChecked ->
 
 
@@ -294,9 +293,6 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 startActivity(intent)
             }
         }
-
-
-
         return root
 
     }
@@ -309,7 +305,6 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         hour = cal.get(Calendar.HOUR)
         minute = cal.get(Calendar.MINUTE)
     }
-
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         savedDay = dayOfMonth
         savedMonth = month
@@ -317,7 +312,6 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         getDateTimeCalendar()
         TimePickerDialog(requireContext(), this, hour, minute, true).show()
     }
-
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         savedHour = hourOfDay
         savedMinute = minute

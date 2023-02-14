@@ -89,8 +89,10 @@ class CalendarAdapter(
         var monthFormat: SimpleDateFormat = SimpleDateFormat("MMM")
         var yearFormat: SimpleDateFormat = SimpleDateFormat("EEEE dd MMMM ")
         var uuid: String
-        var type=true
+        var type="matches"
         if (position < matchesList.size) {
+            holder.btnPresent.visibility = View.VISIBLE;
+            holder.btnAbsent.visibility = View.VISIBLE;
             var matches: Matches = matchesList.get(position) as Matches
             var dateFormat2: Date = matches.begin_date!!
             uuid = matchesList.get(position).UUID.toString()
@@ -110,31 +112,54 @@ class CalendarAdapter(
             intent.putExtra("uuid", matches.UUID)
             intent.putExtra("side", matches.match_side)
             intent.putExtra("place", matches.match_place)
+            if(matches.present!= null ) {
+                intent.putExtra("present", matches.present?.size.toString() ?: 0)
+            } else{intent.putExtra("present",  0) }
+            if(matches.absent!= null ) {
+                intent.putExtra("absent", matches.absent?.size.toString() ?: 0)
+
+            }else{intent.putExtra("absent",  0) }
+            if(matches.summon!= null ) { intent.putExtra("summon", matches.summon?.size.toString() ?: 0) }else{intent.putExtra("pending",  0) }
 
             intent.putExtra("ch_day", matches.championship_day)
-            intent.putExtra("matches", "true")
+            intent.putExtra("type", "matches")
 
         }
         else {
 
-            type=false
+            type="trainings"
             holder.btnPresent.visibility = View.VISIBLE;
             holder.btnAbsent.visibility = View.VISIBLE;
             holder.btnConvoc.visibility = View.GONE;
             uuid = trainingsList.get(position - matchesList.size).UUID.toString()
             var trainings: Trainings = trainingsList.get(position - matchesList.size) as Trainings
             intent.putExtra("uuid", trainings.UUID)
-            intent.putExtra("matches", "false")
+            intent.putExtra("type", "trainings")
+            if(trainings.present!= null ) {
+                intent.putExtra("present", trainings.present?.size.toString() ?: 0)
+            } else{intent.putExtra("present",  0) }
+            if(trainings.absent!= null ) {
+                intent.putExtra("absent", trainings.absent?.size.toString() ?: 0)
+
+            }else{intent.putExtra("absent",  0) }
+            if(trainings.pending!= null ) { intent.putExtra("pending", trainings.pending?.size.toString() ?: 0) }else{intent.putExtra("pending",  0) }
+
             intent.putExtra("teamID", trainings.teamId)
             intent.putExtra("tr_name", trainings.training_name)
             intent.putExtra("description", trainings.training_description)
             if(trainings.present!= null && trainings.present?.contains(currentUserUid) == true)
             {
+                intent.putExtra("btn", "true")
                 holder.btnAbsent.visibility=View.GONE
             }
             else if(trainings.absent!= null && trainings.absent?.contains(currentUserUid) == true){
+                intent.putExtra("btn", "false")
 
                 holder.btnPresent.visibility=View.GONE
+            }
+            else{
+                intent.putExtra("btn", "pen")
+
             }
 
             if (trainings.begin_date != null) {
@@ -253,15 +278,21 @@ class CalendarAdapter(
 
                     }
 
-                    database.reference.child("trainings").child(uuid).child("present")
+                    database.reference.child(type).child(uuid).child("present")
                         .child(user.uuid.toString())
                         .setValue(user).addOnCompleteListener {
 
                         }
-                    database.reference.child("trainings").child(uuid).child("pending")
-                        .child(user.uuid.toString())
-                        .removeValue()
-                    database.reference.child("trainings").child(uuid).child("absent")
+                    if (type=="trainings") {
+                        database.reference.child(type).child(uuid).child("pending")
+                            .child(user.uuid.toString())
+                            .removeValue()
+                    }else{
+                        database.reference.child(type).child(uuid).child("summon")
+                            .child(user.uuid.toString())
+                            .removeValue()
+                    }
+                    database.reference.child(type).child(uuid).child("absent")
                         .child(user.uuid.toString())
                         .removeValue()
 
@@ -288,15 +319,22 @@ class CalendarAdapter(
                         }
 
                     }
-                    database.reference.child("trainings").child(uuid).child("absent")
+                    database.reference.child(type).child(uuid).child("absent")
                         .child(user.uuid.toString())
                         .setValue(user).addOnCompleteListener {
                             Log.d("reussi", "oui")
                         }
-                    database.reference.child("trainings").child(uuid).child("pending")
+                    if(type=="trainings") {
+                        database.reference.child(type).child(uuid).child("pending")
+                            .child(user.uuid.toString())
+                            .removeValue()
+                    }
+                    else{
+                        database.reference.child(type).child(uuid).child("summon")
                         .child(user.uuid.toString())
                         .removeValue()
-                    database.reference.child("trainings").child(uuid).child("present")
+                    }
+                    database.reference.child(type).child(uuid).child("present")
                         .child(user.uuid.toString())
                         .removeValue()
 

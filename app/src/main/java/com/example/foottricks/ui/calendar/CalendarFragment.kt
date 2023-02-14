@@ -1,11 +1,14 @@
 package com.example.foottricks.ui.calendar
 
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,20 +54,12 @@ class CalendarFragment : Fragment() {
         auth = FirebaseAuth.getInstance();
         databaseref = FirebaseDatabase.getInstance().getReference("matches");
         databaseref.addValueEventListener(object : ValueEventListener {
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onDataChange(snapshot: DataSnapshot) {
                 matchesArrayList = ArrayList<Matches>();
                 for (dataSnapshot in snapshot.children) {
                     val matches = dataSnapshot.getValue(Matches::class.java)
-                    val currentDate = Calendar.getInstance().time
-                    val datum : Date = matches!!.end_date!!
-                    Log.d("familia",currentDate.toString())
-                    Log.d("familia", matches!!.end_date.toString())
-                    Log.d("familia", datum.toString())
 
-                    if ( datum.before(currentDate))
-                    {
-                        Log.d("familia","fafa")
-                    }
                     matchesArrayList.add(matches!!)
                 }
                 if (matchesArrayList.isNotEmpty()) {
@@ -102,6 +97,7 @@ class CalendarFragment : Fragment() {
                     binding.layoutListToCome.visibility = View.VISIBLE;
                     binding.addButtonLayout.visibility = View.VISIBLE;
                     binding.linearlayoutBtn.visibility = View.GONE;
+
 
                     mainEventRecyclerView = binding.eventRecyclerview
                     mainEventRecyclerView.layoutManager = LinearLayoutManager(requireContext())

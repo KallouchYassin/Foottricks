@@ -191,6 +191,7 @@ android:id="@+id/my_team"
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
+                android:id="@+id/card_click"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 app:cardElevation="5dp">
@@ -225,6 +226,7 @@ android:id="@+id/my_team"
 
                     </LinearLayout>
 
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -246,6 +248,29 @@ android:id="@+id/my_team"
 
                             android:text="Present" />
 
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:elevation="50dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/number_pending"
+
+                            android:text="0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:text="Pending" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -345,18 +370,25 @@ android:id="@+id/my_team"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
+                            android:id="@+id/img_motm"
                             android:src="@mipmap/ic_motm"
                             />
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtMotm"
+                            android:layout_gravity="center"
+                            android:text="Choose your motm" />
                         <Button
                             android:layout_width="70dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
                             android:fontFamily="@font/gilroy_bold"
                             android:padding="0dp"
+                            android:id="@+id/btn_motm"
                             android:text="Start"
                             android:textSize="8dp"
-                            android:visibility="visible" />
+                            android:visibility="visible"/>
 
 
                     </LinearLayout>
@@ -401,6 +433,7 @@ android:id="@+id/my_team"
                         <RatingBar
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/ratingbar"
                             android:padding="0dp"
                             android:stepSize="0.5"
                             android:layout_gravity="center"
@@ -409,11 +442,13 @@ android:id="@+id/my_team"
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/txtRating"
                             android:layout_gravity="center"
                             android:text="Rate the match here" />
                         <Button
                             android:layout_width="70dp"
                             android:layout_height="25dp"
+                            android:id="@+id/rating_match"
                             android:layout_gravity="center"
                             android:fontFamily="@font/gilroy_bold"
                             android:padding="0dp"
