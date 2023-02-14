@@ -9,6 +9,13 @@ data class Users(
     var phone:String?=null,
     var uuid:String?=null,
     var team:String?=null,
-    var imageUri:String?=null
+    var imageUri:String?=null,
+    var rc:String?=null,
+    var yc:String?=null,
+    var time:String?=null,
+    var note:String?=null,
+    var avg:String?=null,
+    var goals:String?=null,
+    var assist:String?=null
 
     )

@@ -36,6 +36,7 @@ class PresenceAdapter(
 
 
     }
+
     class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var userImg: CircleImageView = itemView.findViewById(com.example.foottricks.R.id.presence_image)
@@ -45,6 +46,7 @@ class PresenceAdapter(
 
 
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
         var view= LayoutInflater.from(context).inflate(R.layout.item_user_presence, parent, false);
         return Viewholder(view);    }

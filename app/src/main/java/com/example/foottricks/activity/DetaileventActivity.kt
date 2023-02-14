@@ -206,6 +206,12 @@ class DetaileventActivity : AppCompatActivity() {
             intent.putExtra("uuid_event",event_uuid.toString() )
             startActivity(intent)
         }
+        binding.btnStats.setOnClickListener {
+            val intent = Intent(this@DetaileventActivity, MatchStatsActivity::class.java)
+            intent.putExtra("type", type.toString())
+            intent.putExtra("uuid_event",event_uuid.toString() )
+            startActivity(intent)
+        }
 
         setContentView(binding.root)
 

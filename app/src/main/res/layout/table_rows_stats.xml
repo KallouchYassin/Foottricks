@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/stats_user_image"
+            android:layout_width="7sp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="8sp"
+            android:layout_marginRight="2dp"
+            android:src="@mipmap/ic_profile_image"/>
+        <TextView
+            android:id="@+id/stats_user_name"
+            android:layout_weight="1"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="6sp"  android:layout_height="match_parent" android:layout_width="match_parent"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:text="Note"
+        android:id="@+id/note_col"
+        android:layout_weight="1" />
+    <TextView
+        android:text="AVG"
+        android:id="@+id/avg_col"
+        android:layout_weight="1" />
+    <TextView
+        android:text="Goals"
+        android:id="@+id/goals_col"
+        android:layout_weight="1" />
+    <TextView
+        android:text="Assist"
+        android:id="@+id/assist_col"
+        android:layout_weight="1" />
+    <TextView
+        android:text="RC"
+        android:id="@+id/rc_col"
+        android:layout_weight="1" />
+    <TextView
+        android:text="YC"
+        android:id="@+id/yc_col"
+        android:layout_weight="1" />
+    <TextView
+        android:text="time"
+        android:id="@+id/time_col"
+        android:layout_weight="1" />
+</TableRow>
