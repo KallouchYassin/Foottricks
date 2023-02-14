@@ -94,7 +94,6 @@ class PresenceAdapter(
             var aBtn= dialog.findViewById<TextView>(R.id.btn_absent)
 
             pBtn.setOnClickListener {
-                var databaseRef: DatabaseReference = database.getReference("users")
 
 
                         database.reference.child(type).child(uuid_event).child("present")
