@@ -204,7 +204,25 @@ class CalendarAdapter(
 
         }
 
+        var databaseRef: DatabaseReference = CalendarAdapter.database.getReference("users")
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+                    val users = dataSnapshot.getValue(Users::class.java)
+                    if (users!!.uuid == currentUserUid) {
+                        user = users;
 
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
 
         holder.btnConvoc.setOnClickListener {
             var dialog: Dialog = Dialog(calendarFragment, R.style.Dialoge)
@@ -264,18 +282,17 @@ class CalendarAdapter(
 
 
         holder.btnPresent.setOnClickListener {
-
+            database.reference.child("users").child(user.uuid.toString()).child("present")
+                .setValue(user.present!! +1)
             var databaseRef: DatabaseReference = CalendarAdapter.database.getReference("users")
             databaseRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-
                     for (dataSnapshot in snapshot.children) {
                         val users = dataSnapshot.getValue(Users::class.java)
                         Log.d("reussi", users.toString())
                         if (users!!.uuid == currentUserUid) {
                             user = users;
                         }
-
                     }
 
                     database.reference.child(type).child(uuid).child("present")
@@ -303,22 +320,35 @@ class CalendarAdapter(
                 }
 
 
+
             })
+
             notifyDataSetChanged()
         }
         holder.btnAbsent.setOnClickListener {
+            database.reference.child("users").child(user.uuid.toString()).child("absent")
+                .setValue(user.absent!! +1)
             var databaseRef: DatabaseReference = CalendarAdapter.database.getReference("users")
             databaseRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-
                     for (dataSnapshot in snapshot.children) {
                         val users = dataSnapshot.getValue(Users::class.java)
                         if (users!!.uuid == currentUserUid) {
                             user = users;
 
                         }
-
                     }
+//                    var present= user.present?.minus(1)
+//                    var convoc= user.convocated?.plus(1)
+
+//                    database.reference.child("users").child(user.uuid.toString()).child("present")
+//                        .setValue(present).addOnCompleteListener {
+//
+//                        }
+//                    database.reference.child("users").child(user.uuid.toString()).child("convocated")
+//                        .setValue(convoc).addOnCompleteListener {
+//
+//                        }
                     database.reference.child(type).child(uuid).child("absent")
                         .child(user.uuid.toString())
                         .setValue(user).addOnCompleteListener {

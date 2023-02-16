@@ -1,7 +1,5 @@
 package com.example.foottricks.model
 
-import android.text.Editable
-
 data class Users(
     var lastname: String? =null,
     var firstname: String? =null,
@@ -16,6 +14,8 @@ data class Users(
     var note:String?=null,
     var avg:String?=null,
     var goals:String?=null,
-    var assist:String?=null
-
-    )
+    var assist:String?=null,
+    var present:Long?=0,
+    var convocated:Long?=0,
+    var absent:Long?=0
+)

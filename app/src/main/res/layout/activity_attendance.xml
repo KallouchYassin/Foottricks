@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".activity.AttendanceActivity">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="30dp"
+        android:background="#f1f1f1"
+        android:stretchColumns="1,2,3,4">
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="Name"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:src="@drawable/summon"
+                android:text="Name"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:src="@drawable/present"
+                android:text="Present"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:src="@drawable/absent"
+                android:text="Absent"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attendance_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+
+</LinearLayout>

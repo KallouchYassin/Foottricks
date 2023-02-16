@@ -50,30 +50,35 @@
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
        />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/card_profile"
-android:layout_below="@id/profile_image"
+        android:layout_below="@id/profile_image"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/profileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gilroy_bold"
-                android:textAlignment="center"
                 android:padding="10dp"
                 android:text="Player name"
-                android:id="@+id/profileName"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -92,53 +97,53 @@ android:layout_below="@id/profile_image"
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_tshirt_round"/>
+                        android:src="@mipmap/ic_tshirt_round" />
 
 
                     <TextView
                         android:id="@+id/profileNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="10sp"
-                        android:textColor="@color/hintTextColor"
+                        android:fontFamily="@font/gilroy_light"
                         android:maxEms="10"
                         android:maxLines="2"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/gilroy_light"
-                        android:paddingTop="10dp"
                         android:paddingStart="5dp"
-                        android:paddingBottom="10dp"/>
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="-"
+                        android:textColor="@color/hintTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_postion"/>
+                        android:src="@mipmap/ic_postion" />
 
 
                     <TextView
                         android:id="@+id/profilePosition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="10sp"
-                        android:textColor="@color/hintTextColor"
+                        android:fontFamily="@font/gilroy_light"
                         android:maxEms="10"
                         android:maxLines="2"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/gilroy_light"
-                        android:paddingTop="10dp"
                         android:paddingStart="5dp"
-                        android:paddingBottom="10dp"/>
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="-"
+                        android:textColor="@color/hintTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,23 +155,23 @@ android:layout_below="@id/profile_image"
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_age"/>
+                        android:src="@mipmap/ic_age" />
 
 
                     <TextView
                         android:id="@+id/profileAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="10sp"
-                        android:textColor="@color/hintTextColor"
+                        android:fontFamily="@font/gilroy_light"
                         android:maxEms="10"
                         android:maxLines="2"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/gilroy_light"
-                        android:paddingTop="10dp"
                         android:paddingStart="5dp"
-                        android:paddingBottom="10dp"/>
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="-"
+                        android:textColor="@color/hintTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>

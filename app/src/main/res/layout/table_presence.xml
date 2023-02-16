@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:stretchColumns="1,2,3,4"
+    android:layout_height="wrap_content">
+
+    <TableRow>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_column="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/attendance_user_image"
+                android:layout_width="7sp"
+                android:layout_height="8sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"
+                android:src="@mipmap/ic_profile_image" />
+            <TextView
+                android:id="@+id/attendance_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="6sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/attendance_convocated"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_column="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Name"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/attendance_present"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_column="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Name"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/attendance_absent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_column="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Present"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+</TableLayout>
