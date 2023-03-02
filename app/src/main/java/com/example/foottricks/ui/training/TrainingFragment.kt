@@ -8,9 +8,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import com.example.foottricks.R
 import com.example.foottricks.databinding.FragmentTrainingBinding
 import com.example.foottricks.model.Matches
@@ -82,6 +85,7 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         // Inflate the layout for this fragment
         _binding = FragmentTrainingBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         auth = FirebaseAuth.getInstance();
         databaseref =
             FirebaseDatabase.getInstance().getReference("users").child(auth.currentUser!!.uid);
@@ -368,6 +372,7 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         }
         return events
     }
+
 
 
 }

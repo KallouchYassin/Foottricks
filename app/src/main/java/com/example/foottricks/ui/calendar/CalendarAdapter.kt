@@ -338,17 +338,7 @@ class CalendarAdapter(
 
                         }
                     }
-//                    var present= user.present?.minus(1)
-//                    var convoc= user.convocated?.plus(1)
 
-//                    database.reference.child("users").child(user.uuid.toString()).child("present")
-//                        .setValue(present).addOnCompleteListener {
-//
-//                        }
-//                    database.reference.child("users").child(user.uuid.toString()).child("convocated")
-//                        .setValue(convoc).addOnCompleteListener {
-//
-//                        }
                     database.reference.child(type).child(uuid).child("absent")
                         .child(user.uuid.toString())
                         .setValue(user).addOnCompleteListener {

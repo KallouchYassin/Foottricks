@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.foottricks.activity.AttendanceActivity
-import com.example.foottricks.activity.LoginActivity
+import com.example.foottricks.activity.*
 import com.example.foottricks.databinding.FragmentTeamBinding
 
 
@@ -34,6 +33,22 @@ class TeamFragment : Fragment() {
             startActivity(Intent(requireContext(), AttendanceActivity::class.java))
 
         }
+        binding.cardLeague.setOnClickListener {
+            startActivity(Intent(requireContext(), LeagueActivity::class.java))
+
+        }
+        binding.cardTeamStats.setOnClickListener {
+            startActivity(Intent(requireContext(), TeamStatsActivity::class.java))
+
+        }
+        binding.cardTeamResult.setOnClickListener {
+            startActivity(Intent(requireContext(), TeamResultActivity::class.java))
+
+        }
+        binding.cardPlayerStats.setOnClickListener {
+            startActivity(Intent(requireContext(), PlayerStatsActivity::class.java))
+
+        }
 
 
         return root    }
@@ -41,5 +56,6 @@ class TeamFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 
 }

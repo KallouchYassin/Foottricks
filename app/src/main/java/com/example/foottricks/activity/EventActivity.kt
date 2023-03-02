@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.foottricks.R
 import com.example.foottricks.databinding.ActivityEventBinding
@@ -18,6 +19,8 @@ class EventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEventBinding.inflate(layoutInflater);
         setContentView(binding.root);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         replaceFragment(MatchFragment())
         binding.bottomNavigationView.setOnItemSelectedListener{
 
@@ -33,11 +36,18 @@ class EventActivity : AppCompatActivity() {
             }
             true
         }
-        binding.imgToolbarBtnBack.setOnClickListener {
-            startActivity(Intent(this@EventActivity, CalendarFragment::class.java))
-        }
-    }
 
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // navigate back to the previous activity
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager=supportFragmentManager
         val fragmentTransaction=fragmentManager.beginTransaction()

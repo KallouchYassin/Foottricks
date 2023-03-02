@@ -18,6 +18,7 @@ data class Matches(
     var absent:HashMap<String,Users>?=null,
     var present:HashMap<String,Users>?=null,
     val motm: HashMap<String,Users>?=null,
+    val result: String?=null
 
 
 

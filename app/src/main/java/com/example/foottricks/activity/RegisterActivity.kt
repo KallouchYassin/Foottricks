@@ -1,5 +1,6 @@
 package com.example.foottricks.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -25,12 +26,47 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     public override fun onStart() {
         super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            var intent = Intent(this@RegisterActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        var currentUser = auth.currentUser
+        val databaseref = database.reference.child("users");
+        var u:Users=Users();
+        databaseref.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SuspiciousIndentation")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+
+                    val users = dataSnapshot.getValue(Users::class.java)
+                    if (users!!.uuid != currentUser?.uid) {
+                        u=users
+                    }
+
+                }
+                if (currentUser != null) {
+
+                    if(u.teamId == null){
+                        Log.d("mechant", u.toString());
+
+                     var intent = Intent(this@RegisterActivity, JoinTeamActivity::class.java)
+                        startActivity(intent)
+
+                        finish()
+                    }else {
+                        var intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+            })
+
+
+//        Log.d("testers", );
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,37 +78,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("teams")
 
-        myRef.addChildEventListener(object : ChildEventListener {
-            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-
-                val data = dataSnapshot.child("name").getValue(Any::class.java)
-                items += data.toString();
-                val adapter =
-                    ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, items)
-
-                val spinner = findViewById<Spinner>(R.id.team);
-                spinner.adapter = adapter;
-
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
 
 
 
@@ -83,7 +89,6 @@ class RegisterActivity : AppCompatActivity() {
             val firstname = binding.firstname.text
             val repassword = binding.repassword.text
             val lastname = binding.lastname.text
-            val team = binding.team.selectedItem.toString()
 
 
             if (email.isEmpty() || password.isEmpty() || firstname.isEmpty() || repassword.isEmpty() || lastname.isEmpty()) {
@@ -142,12 +147,12 @@ class RegisterActivity : AppCompatActivity() {
                                 database.reference.child("users").child(auth.currentUser!!.uid)
                             val users: Users = Users(
                                 lastname.toString(),firstname.toString(), email.toString(),null,
-                                 auth.currentUser!!.uid, team.toString(), imageUri
+                                 auth.currentUser!!.uid, null,"player", imageUri
                             )
                             databaseref.setValue(users).addOnCompleteListener {
                                 if (it.isSuccessful) {
                                     var intent =
-                                        Intent(this@RegisterActivity, MainActivity::class.java)
+                                        Intent(this@RegisterActivity, JoinTeamActivity::class.java)
                                     startActivity(intent)
                                     finish()
                                 } else {

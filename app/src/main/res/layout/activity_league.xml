@@ -1,9 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LeagueActivity">
+    tools:context=".activity.LeagueActivity"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+      <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="30dp"
+        android:background="#f1f1f1"
+        android:stretchColumns="1,2,3,4,5,6,7,8,9">
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="Team"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="MP"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="Pts"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="G"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="P"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="N"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="Gf"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="Ga"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_column="1"
+                android:gravity="center"
+                android:text="Gd"
+                android:textStyle="bold" />
+
+
+        </TableRow>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attendance_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+
+</LinearLayout>

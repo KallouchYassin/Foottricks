@@ -7,19 +7,7 @@
     tools:context=".activity.EventActivity">
 
 
-    <ImageButton
-        android:id="@+id/imgToolbarBtnBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="start"
-     android:layout_marginTop="200dp"
-        android:paddingStart="12dp"
-        android:backgroundTint="@color/transparent"
-        android:paddingTop="8dp"
-        android:paddingEnd="4dp"
-        android:paddingBottom="8dp"
-        android:src="@drawable/ic_back_dark"
-        tools:ignore="MissingConstraints" />
+
 
     <FrameLayout
         android:id="@+id/frame_layout"

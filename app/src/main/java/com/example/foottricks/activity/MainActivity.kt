@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foottricks.R
 import com.example.foottricks.databinding.ActivityMainBinding
+import com.example.foottricks.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -38,12 +39,44 @@ class MainActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        Log.d("test",currentUser.toString())
-        if(currentUser == null){
-            var intent = Intent(this@MainActivity, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        val databaseref = FirebaseDatabase.getInstance().reference.child("users");
+        var u: Users = Users();
+
+
+        databaseref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+
+                    val users = dataSnapshot.getValue(Users::class.java)
+                    if (users!!.uuid != currentUser?.uid) {
+                        u=users
+                    }
+
+                }
+                if(currentUser == null){
+
+                    if(u.teamId == null){
+                        Log.d("mechant", u.toString());
+
+                        var intent = Intent(this@MainActivity, JoinTeamActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }else {
+                    var intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()}
+                }
+
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

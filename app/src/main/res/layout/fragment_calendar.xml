@@ -54,19 +54,19 @@
             android:textSize="26sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-
             android:id="@+id/eventFinishedRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/layoutListToCome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_below="@+id/layoutListFinished"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:visibility="visible">
@@ -112,6 +112,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
 
         android:id="@+id/addButtonLayout"
@@ -121,17 +122,17 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:gravity="end"
-        android:visibility="gone"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:visibility="gone">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@android:drawable/ic_input_add" />
     </LinearLayout>
 
 </RelativeLayout>

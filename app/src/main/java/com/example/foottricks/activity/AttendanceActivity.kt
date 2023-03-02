@@ -40,21 +40,13 @@ class AttendanceActivity : AppCompatActivity() {
         attendanceAdapter.layoutManager = linearLayoutManager;
         adapter = AttendanceAdapter(userArrayList, this);
         attendanceAdapter.adapter = adapter
-
-
         databaseref = FirebaseDatabase.getInstance().getReference("users");
         databaseref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userArrayList.clear()
                 for (dataSnapshot in snapshot.children) {
-
-                        var user = dataSnapshot.getValue(Users::class.java)!!
-
-                                    userArrayList.add(user)
-
-
-
-
+                    var user = dataSnapshot.getValue(Users::class.java)!!
+                    userArrayList.add(user)
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -62,7 +54,6 @@ class AttendanceActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
-
         setContentView(binding.root)
     }
 }

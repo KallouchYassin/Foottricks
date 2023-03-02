@@ -9,6 +9,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request.Method
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.foottricks.adapter.MessageAdapter
 import com.example.foottricks.databinding.ActivityDisscusionBinding
 import com.example.foottricks.model.Messages
@@ -16,6 +18,9 @@ import com.example.foottricks.ui.chat.ChatFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Request
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.reflect.Array.newInstance
 import java.util.Date
 
@@ -52,7 +57,6 @@ class DisscusionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDisscusionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
@@ -65,9 +69,7 @@ class DisscusionActivity : AppCompatActivity() {
         senderUid = auth.uid!!;
         senderRoom = senderUid + receiverUid
         receiverRoom = receiverUid + senderUid
-        Log.d("Yassin",receiverUid)
-        Log.d("Yassin",senderRoom)
-        Log.d("Moha",senderRoom)
+
         Picasso.get().load(receiverImg).into(binding.disscusionImage)
         binding.receiverName.text = "" + receiverName
 
@@ -140,10 +142,14 @@ class DisscusionActivity : AppCompatActivity() {
                 }
         }
         binding.imgToolbarBtnBack.setOnClickListener {
-            it.setBackgroundColor(Color.rgb(44,244,224))
+            it.setBackgroundColor(Color.rgb(44, 244, 224))
             finish()
 
         }
 
     }
+
+
+
+
 }

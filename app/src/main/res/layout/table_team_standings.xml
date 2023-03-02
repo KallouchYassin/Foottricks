@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1,2,3,4,5,6,7,8,9">
+
+    <TableRow>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/standings_team_logo"
+                android:layout_width="7sp"
+                android:layout_height="8sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"
+                android:src="@mipmap/ic_profile_image" />
+
+            <TextView
+                android:id="@+id/standings_team_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="6sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/standings_team_mp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="MP"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/standings_team_pts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="Pts"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/standings_team_g"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="G"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/standings_team_n"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="N"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/standings_team_p"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="P"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/standings_team_gf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="Gf"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/standings_team_ga"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="Ga"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/standings_team_gd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_column="1"
+            android:gravity="center"
+            android:text="Gd"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+</TableLayout>
