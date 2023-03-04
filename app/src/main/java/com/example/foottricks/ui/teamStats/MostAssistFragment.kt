@@ -43,6 +43,7 @@ class MostAssistFragment : Fragment() {
         auth = FirebaseAuth.getInstance();
         val root: View = binding.root
 
+
         userArrayList = ArrayList<Users>()
 
 
@@ -93,8 +94,15 @@ class MostAssistFragment : Fragment() {
                         }
                     }
                 }
-                binding.mostGoalsName.text = u.lastname + " " + u.firstname
-                Picasso.get().load(u.imageUri).into(binding.mostGoalsImg)
+                if (assist<=0)
+                {
+                    binding.mostAssistName.text = "No top assist"
+                    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/foottricks-5a2f5.appspot.com/o/profile.png?alt=media&token=51f4ddbd-c439-4f10-b754-551d6b6b10ab").into(binding.mostAssistImg)
+                }else{
+                    binding.mostAssistName.text = u.lastname + " " + u.firstname
+                    Picasso.get().load(u.imageUri).into(binding.mostAssistImg)
+                }
+
                 databaseref.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         userArrayList.clear()

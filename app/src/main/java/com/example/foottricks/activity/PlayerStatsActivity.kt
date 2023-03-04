@@ -31,7 +31,8 @@ class PlayerStatsActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance();
         userArrayList = ArrayList<Users>()
 
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Player Statistics"
         playerStatAdapter = binding.attendanceRecyclerview;
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.stackFromEnd = true

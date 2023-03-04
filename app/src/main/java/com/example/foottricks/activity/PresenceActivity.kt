@@ -39,7 +39,8 @@ class PresenceActivity : AppCompatActivity() {
         absentArrayList=ArrayList<Users>()
         var type = intent.getStringExtra("type").toString()
         var uuid_event =intent.getStringExtra("uuid_event").toString()
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Attendance"
         presenceAdapter = binding.presenceAdapter;
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.stackFromEnd = true

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         val databaseref = FirebaseDatabase.getInstance().reference.child("users");
-        var u: Users = Users();
+        var u: Users? =null;
 
 
         databaseref.addValueEventListener(object : ValueEventListener {
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 if(currentUser == null){
 
-                    if(u.teamId == null){
+                    if(u?.teamId == null){
                         Log.d("mechant", u.toString());
 
                         var intent = Intent(this@MainActivity, JoinTeamActivity::class.java)
@@ -87,15 +87,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
         user = auth.currentUser!!
 
-//        var databaseref = FirebaseDatabase.getInstance().getReference("trainings");
-//
-//        databaseref.removeValue()
-//            .addOnSuccessListener {
-//                Log.d("TAG", "Data successfully deleted.")
-//            }
-//            .addOnFailureListener {
-//                Log.w("TAG", "Failed to delete data.", it)
-//            }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val hView = navView.getHeaderView(0)

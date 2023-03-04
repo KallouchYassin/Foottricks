@@ -30,8 +30,8 @@ class TeamResultActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         matchesArrayList = ArrayList<Matches>()
-
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Team Results"
         teamResultAdapter = binding.matchesResult;
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.stackFromEnd = true

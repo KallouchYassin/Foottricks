@@ -22,5 +22,33 @@
             android:id="@+id/nav_team"
             android:icon="@drawable/ic_baseline_sports_soccer_24"
             android:title="@string/menu_team" />
+        <item android:title="Profile">
+
+            <menu>
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/ic_baseline_logout_24"
+                    android:title="logout" />
+                <item
+                    android:id="@+id/profile"
+                    android:icon="@drawable/ic_baseline_person_outline_24"
+                    android:title="profile" />
+            </menu>
+
+        </item>
+        <item android:title="Communications">
+
+            <menu>
+                <item
+                    android:id="@+id/share"
+                    android:icon="@drawable/ic_baseline_share_24"
+                    android:title="Share" />
+                <item
+                    android:id="@+id/noteus"
+                    android:icon="@drawable/ic_baseline_note_24"
+                    android:title="note us" />
+            </menu>
+
+        </item>
     </group>
 </menu>

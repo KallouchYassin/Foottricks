@@ -139,16 +139,19 @@ android:id="@+id/my_team"
         <LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/card_matchInfo"
-
+android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
+
                 android:text="Match" />
 
             <androidx.cardview.widget.CardView
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -181,18 +184,21 @@ android:id="@+id/my_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/card_participants"
-
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
                 android:text="Participants" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:id="@+id/card_click"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:cardElevation="5dp">
 
@@ -283,17 +289,19 @@ android:id="@+id/my_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/card_stats"
-
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
                 android:text="Stats" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 app:cardElevation="5dp">
@@ -340,18 +348,20 @@ android:id="@+id/my_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/card_manOfMatch"
-
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Man of the match" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 app:cardElevation="5dp">
 
                 <LinearLayout
@@ -404,17 +414,20 @@ android:id="@+id/my_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/card_note"
-
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
                 android:text="Note of the match" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:cardElevation="5dp">
 
@@ -470,17 +483,20 @@ android:id="@+id/my_team"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/card_description"
-
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
                 android:text="Description" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:cardElevation="5dp">
 

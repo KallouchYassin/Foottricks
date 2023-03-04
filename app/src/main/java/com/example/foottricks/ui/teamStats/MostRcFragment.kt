@@ -46,33 +46,34 @@ class MostRcFragment : Fragment() {
 
 
         mostRcAdapter = binding.recyclerViewMostRc;
-        var linearLayoutManager = LinearLayoutManager( requireContext())
+        var linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.stackFromEnd = true
         mostRcAdapter.layoutManager = linearLayoutManager;
         adapter = MostRcAdapter(userArrayList, requireContext());
         mostRcAdapter.adapter = adapter
         databaseref = FirebaseDatabase.getInstance().getReference("users");
-        var user= Users();
-        var user_uid= auth.currentUser!!.uid
+        var user = Users();
+        var user_uid = auth.currentUser!!.uid
 
         databaseref.addValueEventListener(object : ValueEventListener {
             lateinit var team: Team
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (dataSnapshot in snapshot.children) {
                     var users = dataSnapshot.getValue(Users::class.java)!!
-                    if(users.uuid==user_uid)
-                    {
-                        user=users
+                    if (users.uuid == user_uid) {
+                        user = users
                     }
                 }
                 test(user)
 
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
-        return root;    }
+        return root; }
+
     private fun test(user2: Users) {
         databaseref = FirebaseDatabase.getInstance().getReference("users");
 
@@ -90,8 +91,17 @@ class MostRcFragment : Fragment() {
                         }
                     }
                 }
-                binding.mostGoalsName.text = u.lastname + " " + u.firstname
-                Picasso.get().load(u.imageUri).into(binding.mostGoalsImg)
+                if (rc <= 0) {
+                    binding.mostRedName.text = "No top assist"
+                    Picasso.get()
+                        .load("https://firebasestorage.googleapis.com/v0/b/foottricks-5a2f5.appspot.com/o/profile.png?alt=media&token=51f4ddbd-c439-4f10-b754-551d6b6b10ab")
+                        .into(binding.mostRedImg)
+                } else {
+                    binding.mostRedName.text = u.lastname + " " + u.firstname
+                    Picasso.get().load(u.imageUri).into(binding.mostRedImg)
+                }
+                binding.mostRedName.text = u.lastname + " " + u.firstname
+                Picasso.get().load(u.imageUri).into(binding.mostRedImg)
                 databaseref.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         userArrayList.clear()
@@ -121,7 +131,6 @@ class MostRcFragment : Fragment() {
             }
         })
     }
-
 
 
 }

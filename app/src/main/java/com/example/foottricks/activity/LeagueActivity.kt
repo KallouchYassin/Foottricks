@@ -29,7 +29,8 @@ class LeagueActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         teamArrayList = ArrayList<Team>()
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "League Standings"
 
         leagueAdapter = binding.attendanceRecyclerview;
         var linearLayoutManager = LinearLayoutManager(this)

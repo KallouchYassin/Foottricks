@@ -174,5 +174,10 @@ class RegisterActivity : AppCompatActivity() {
                     }
             }
         }
+        binding.others.setOnClickListener {
+            var intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

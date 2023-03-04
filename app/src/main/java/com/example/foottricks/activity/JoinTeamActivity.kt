@@ -42,7 +42,8 @@ class JoinTeamActivity : AppCompatActivity() {
             } else {
                 var currentUser = auth.currentUser
                 val databaseref = FirebaseDatabase.getInstance().reference.child("teams");
-                var u: Users = Users();
+
+
                 databaseref.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (dataSnapshot in snapshot.children) {
@@ -53,13 +54,25 @@ class JoinTeamActivity : AppCompatActivity() {
                                     FirebaseDatabase.getInstance().reference.child("users")
                                         .child(auth.currentUser!!.uid)
                                 val newEntry = HashMap<String, String>()
-                                newEntry["team"] = binding.teamCode.text.toString()
-                                databaseref.updateChildren(newEntry as Map<String, Any>)
+                                newEntry["teamId"] = binding.teamCode.text.toString()
+
+                                databaseref.updateChildren(newEntry as Map<String, String>)
                                     .addOnSuccessListener {
-                                        var intent =
-                                            Intent(this@JoinTeamActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
+                                        val newEntry2 = HashMap<String, String>()
+                                        newEntry2["team_name"] = team.team_name.toString()
+                                        databaseref.updateChildren(newEntry2 as Map<String, String>)
+                                            .addOnSuccessListener {
+                                                var intent =
+                                                    Intent(this@JoinTeamActivity, MainActivity::class.java)
+                                                startActivity(intent)
+                                                finish()
+                                            }
+                                            .addOnFailureListener {
+                                                Toast.makeText(
+                                                    this@JoinTeamActivity, "Something went wrong",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
                                     }
                                     .addOnFailureListener {
                                         Toast.makeText(

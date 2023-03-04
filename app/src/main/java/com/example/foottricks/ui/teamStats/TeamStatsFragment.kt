@@ -78,12 +78,22 @@ class TeamStatsFragment : Fragment() {
         databaseref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var team=snapshot.getValue(Team::class.java)
+                var entryList = ArrayList<PieEntry>()
 
                 Log.d("real", team!!.team_losses.toString())
-                var entryList = ArrayList<PieEntry>()
-                entryList.add(PieEntry(team.team_wins?.toFloat() ?: 500F, "Wins"))
-                entryList.add(PieEntry(team.team_draws?.toFloat() ?: 300F, "Draws"))
-                entryList.add(PieEntry(team.team_losses?.toFloat() ?: 100F, "Losses"))
+                if(team!!.team_losses=="0" && team!!.team_draws=="0" && team!!.team_wins=="0")
+                {
+                    entryList.add(PieEntry(500F, "Wins"))
+                    entryList.add(PieEntry( 300F, "Draws"))
+                    entryList.add(PieEntry(100F, "Losses"))
+                }
+                else{
+                    entryList.add(PieEntry(team.team_wins?.toFloat() ?: 500F, "Wins"))
+                    entryList.add(PieEntry(team.team_draws?.toFloat() ?: 300F, "Draws"))
+                    entryList.add(PieEntry(team.team_losses?.toFloat() ?: 100F, "Losses"))
+
+                }
+
                 var pieDataSet: PieDataSet = PieDataSet(entryList, "Pie list data")
                 var pieData: PieData = PieData(pieDataSet)
                 pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS.toList())

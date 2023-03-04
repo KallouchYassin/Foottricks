@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/most_goals_name"
+                android:id="@+id/most_assist_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -37,7 +37,7 @@
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/most_goals_img"
+            android:id="@+id/most_assist_img"
             android:layout_width="90sp"
             android:layout_height="90sp"
             android:layout_gravity="center"

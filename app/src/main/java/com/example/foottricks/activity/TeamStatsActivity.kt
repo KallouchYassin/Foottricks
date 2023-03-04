@@ -16,7 +16,10 @@ class TeamStatsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTeamStatsBinding.inflate(layoutInflater)
-binding.tableLayout.setupWithViewPager(binding.viewpager)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Team Statistics"
+
+        binding.tableLayout.setupWithViewPager(binding.viewpager)
 
         val fragments = listOf(TeamStatsFragment(), MostAssistFragment(),MostGoalsFragment(),MostRcFragment())
         val adapter = VPAdapter(supportFragmentManager, fragments)

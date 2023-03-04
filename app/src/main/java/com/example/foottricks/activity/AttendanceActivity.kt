@@ -33,7 +33,8 @@ class AttendanceActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance();
         userArrayList = ArrayList<Users>()
 
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Attendance"
         attendanceAdapter = binding.attendanceRecyclerview;
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.stackFromEnd = true

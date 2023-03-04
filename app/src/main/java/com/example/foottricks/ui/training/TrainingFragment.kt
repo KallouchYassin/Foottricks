@@ -1,5 +1,6 @@
 package com.example.foottricks.ui.training
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
@@ -14,6 +15,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.foottricks.R
 import com.example.foottricks.databinding.FragmentTrainingBinding
 import com.example.foottricks.model.Matches
@@ -204,8 +207,7 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 //retrieving the user name
                 teamId =
-                    dataSnapshot.child("team").getValue(String::class.java).toString()
-                Log.d("reussi", "oui4")
+                    dataSnapshot.child("teamId").getValue(String::class.java).toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -267,8 +269,9 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                         calendar.add(Calendar.DATE, 1)
                     }
 
-                } else {
-
+                }
+                else {
+                    showProgressDialog()
 
                     var date: Date = Date(yearBegin, monthBegin, DayBegin, hourBegin, minuteBegin)
                     var dateEnd: Date = Date(yearEnd, monthEnd, DayEnd, hourEnd, minuteEnd)
@@ -292,9 +295,13 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
 
 
                 }
-                var intent = Intent(this.requireContext(), CalendarFragment::class.java)
+                val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                val newFragment = CalendarFragment()
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(com.example.foottricks.R.id.training_fragment, newFragment);
+                progressDialog.dismiss()
 
-                startActivity(intent)
+                fragmentTransaction.commit();
             }
         }
         return root
@@ -373,6 +380,15 @@ class TrainingFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         return events
     }
 
+    private lateinit var progressDialog: AlertDialog
 
+    private fun showProgressDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        val inflater = layoutInflater
+        builder.setView(inflater.inflate(com.example.foottricks.R.layout.dialog_loading, null))
+        builder.setCancelable(false)
+        progressDialog = builder.create()
+        progressDialog.show()
+    }
 
 }

@@ -86,6 +86,8 @@ class CalendarAdapter(
 
 
         var dayFormat: SimpleDateFormat = SimpleDateFormat("EEE")
+        var dayFormat2: SimpleDateFormat = SimpleDateFormat("dd")
+
         var monthFormat: SimpleDateFormat = SimpleDateFormat("MMM")
         var yearFormat: SimpleDateFormat = SimpleDateFormat("EEEE dd MMMM ")
         var uuid: String
@@ -101,14 +103,14 @@ class CalendarAdapter(
                 "Appointment Time at ${matches.appointment_time_hour}:${matches.appointment_time_minute}";
             holder.day.text = SimpleDateFormat("dd").format(matches.begin_date);
             holder.writtenDay.text = dayFormat.format(matches.begin_date);
-            holder.opponents.text = "${matches.teamId} VS ${matches.opponent} ";
+            holder.opponents.text = "${matches.team_name} VS ${matches.opponent} ";
             holder.championship_day.text =
                 "<<J${matches.championship_day}>> : ${matches.match_side}";
             holder.hourOfmatch.text = SimpleDateFormat("HH:mm").format(matches.begin_date);
             holder.month_txt.text = monthFormat.format(matches.begin_date);
             intent.putExtra("opp", matches.opponent)
             intent.putExtra("teamID", matches.teamId)
-            intent.putExtra("begin_date", matches.begin_date.toString())
+            intent.putExtra("begin_date", "${dayFormat.format(matches.begin_date)} ${SimpleDateFormat("dd").format(matches.begin_date)} ${SimpleDateFormat("HH:mm").format(matches.begin_date)} ${monthFormat.format(matches.begin_date)} ")
             intent.putExtra("uuid", matches.UUID)
             intent.putExtra("side", matches.match_side)
             intent.putExtra("place", matches.match_place)
@@ -170,11 +172,11 @@ class CalendarAdapter(
 
                 holder.hourOfmatch.text =
                     dateFormat2.hours.toString() + ":" + dateFormat2.minutes.toString();
-                holder.day.text = dateFormat2.day.toString();
+                holder.day.text = dayFormat2.format(trainings.begin_date);
                 holder.writtenDay.text = dayFormat.format(trainings.begin_date);
                 holder.month_txt.text = monthFormat.format(trainings.begin_date);
 
-                intent.putExtra("begin_date", trainings.begin_date.toString())
+                intent.putExtra("begin_date", "Training of ${yearFormat.format(trainings.begin_date)}")
                 intent.putExtra("tr_place", trainings.match_place)
                 intent.putExtra("app_hour", trainings.appointment_time_hour)
                 intent.putExtra("app_minute", trainings.appointment_time_minute)

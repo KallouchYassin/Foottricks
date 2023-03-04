@@ -35,7 +35,8 @@ class MatchStatsActivity : AppCompatActivity() {
         binding.tableLayout.addView(headerView, 0)
         var type = intent.getStringExtra("type").toString()
         var uuid_event = intent.getStringExtra("uuid_event").toString()
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Match Statistics"
         statsAdapter = binding.myRecyclerView;
         var linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.stackFromEnd = true

@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
 
         val databaseref = FirebaseDatabase.getInstance().reference.child("users");
-        var u: Users = Users();
+        var u: Users? =null;
 
         databaseref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("mechant", currentUser.uid.toString());
 
 
-                    if (u.teamId == null) {
+                    if (u?.teamId == null) {
 
                           var intent = Intent(this@LoginActivity, JoinTeamActivity::class.java)
                         startActivity(intent)

@@ -134,7 +134,7 @@ class DetaileventActivity : AppCompatActivity() {
                     }:${intent.getStringExtra("recc_time_minute")}";
             } else {
                 binding.trainingName.text =
-                    "${intent.getStringExtra("tr_name")} : Training of ${intent.getStringExtra("begin_date")}\n at ${
+                    "${intent.getStringExtra("tr_name")} : ${intent.getStringExtra("begin_date")}\n at ${
                         intent.getStringExtra("app_hour")
                     }:${intent.getStringExtra("app_minute")}";
             }

@@ -20,7 +20,7 @@ class EventActivity : AppCompatActivity() {
         binding = ActivityEventBinding.inflate(layoutInflater);
         setContentView(binding.root);
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        supportActionBar?.title = "Add event"
         replaceFragment(MatchFragment())
         binding.bottomNavigationView.setOnItemSelectedListener{
 

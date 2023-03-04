@@ -1,5 +1,6 @@
 package com.example.foottricks.ui.match
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -12,16 +13,15 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.foottricks.databinding.FragmentMatchBinding
 import com.example.foottricks.model.Matches
+import com.example.foottricks.model.Users
 import com.example.foottricks.ui.calendar.CalendarFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import java.util.*
 
 
@@ -35,8 +35,10 @@ class MatchFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     private lateinit var databaseref: DatabaseReference
 
     private lateinit var teamId: String
+    private lateinit var team_name: String
 
     private lateinit var type: String
+    var uList=kotlin.collections.HashMap<String,Users>()
 
 
     private val binding get() = _binding!!
@@ -110,19 +112,32 @@ class MatchFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             check = 2
             TimePickerDialog(requireContext(), this, hour, minute, true).show()
         }
-        databaseref =
-            FirebaseDatabase.getInstance().getReference("users").child(auth.currentUser!!.uid);
+        databaseref = FirebaseDatabase.getInstance().getReference("users").child(auth.currentUser!!.uid);
 
         databaseref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 //retrieving the user name
                 teamId =
-                    dataSnapshot.child("team").getValue(String::class.java).toString()
+                    dataSnapshot.child("teamId").getValue(String::class.java).toString()
+                team_name =
+                    dataSnapshot.child("team_name").getValue(String::class.java).toString()
 
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w("Error", "Failed to read value.", error.toException())
+            }
+        })
+        var databaseRef=  FirebaseDatabase.getInstance().getReference("users")
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (dataSnapshot in snapshot.children) {
+                    val users = dataSnapshot.getValue(Users::class.java)
+                    uList.put(users!!.uuid.toString(),users!!)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
             }
         })
 
@@ -142,6 +157,7 @@ class MatchFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                 Toast.makeText(requireContext(), "Enter valid details", Toast.LENGTH_SHORT).show();
 
             } else {
+                showProgressDialog()
 
                 var date: Date = Date(yearBegin, monthBegin, DayBegin, hourBegin, minuteBegin)
                 var dateEnd: Date = Date(yearEnd, monthEnd, DayEnd, hourEnd, minuteEnd)
@@ -152,21 +168,24 @@ class MatchFragment : Fragment(), DatePickerDialog.OnDateSetListener,
                     binding.dayCh.text.toString(),
                     date,
                     dateEnd, minuteApp.toString(), hourApp.toString(),
-                    binding.matchPlaceEdit.text.toString(),
-                    type,
-                    teamId,uuid
+                    binding.matchPlaceEdit.text.toString(),type,
+                    teamId,uuid,null,null,uList,null,null,null,null,team_name
                 )
 
                 database = FirebaseDatabase.getInstance()
                 database.reference.child("matches").child(uuid)
                     .setValue(event).addOnCompleteListener {
+                        progressDialog.dismiss()
 
-                        Log.d("reussi", "oui")
+                        val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+                        val newFragment = CalendarFragment()
+                        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                        fragmentTransaction.replace(com.example.foottricks.R.id.match_fragment, newFragment);
+                        fragmentTransaction.commit();
                     }
 
 
-                var intent = Intent(requireContext(), CalendarFragment::class.java)
-                startActivity(intent)
+
             }
         }
 
@@ -218,6 +237,16 @@ class MatchFragment : Fragment(), DatePickerDialog.OnDateSetListener,
             binding.appTime.hint = "$savedHour:$savedMinute";
 
         }
+    }
+    private lateinit var progressDialog: AlertDialog
+
+    private fun showProgressDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        val inflater = layoutInflater
+        builder.setView(inflater.inflate(com.example.foottricks.R.layout.dialog_loading, null))
+        builder.setCancelable(false)
+        progressDialog = builder.create()
+        progressDialog.show()
     }
 
 

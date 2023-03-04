@@ -15,14 +15,16 @@ data class Matches(
     var UUID:String?=null,
     val ratings: HashMap<String,Long>?=null,
     val summon: HashMap<String,Users>?=null,
+    val users: HashMap<String,Users>?=null,
     var absent:HashMap<String,Users>?=null,
     var present:HashMap<String,Users>?=null,
     val motm: HashMap<String,Users>?=null,
-    val result: String?=null
+    val result: String?=null,
+    var team_name:String?=null
 
 
 
 
 
-)
+    )
 
