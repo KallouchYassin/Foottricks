@@ -16,6 +16,7 @@ import com.example.foottricks.activity.EventActivity
 import com.example.foottricks.databinding.FragmentCalendarBinding
 import com.example.foottricks.model.Matches
 import com.example.foottricks.model.Trainings
+import com.example.foottricks.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -50,8 +51,27 @@ class CalendarFragment : Fragment() {
         val root: View = binding.root
         matchesArrayList = ArrayList<Matches>();
         trainingsArrayList = ArrayList<Trainings>();
-
         auth = FirebaseAuth.getInstance();
+        val currentUser = auth.currentUser
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("users/${currentUser?.uid}")
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userData = snapshot.getValue(Users::class.java)
+              if (userData?.role =="player")
+              {
+                  binding.fab.visibility=View.GONE;
+                  binding.btnGetStarted.visibility=View.GONE;
+              }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle the error here
+            }
+        })
+
+
         databaseref = FirebaseDatabase.getInstance().getReference("matches");
         databaseref.addValueEventListener(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.N)

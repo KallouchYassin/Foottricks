@@ -3,6 +3,9 @@
 
     <solid android:color="@color/white" />
     <corners android:radius="7sp"/>
+    <stroke
+        android:width="2dp"
+        android:color="#07E4EC" /> <!-- #00FF00 is the hex code for green -->
 
 
 </shape>

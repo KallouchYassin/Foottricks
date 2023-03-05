@@ -83,7 +83,22 @@ class CalendarAdapter(
         val currentUserUid = auth.currentUser!!.uid
         var user = Users()
         var uList=kotlin.collections.ArrayList<Users>()
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("users/${currentUserUid}")
 
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userData = snapshot.getValue(Users::class.java)
+                if (userData?.role =="player")
+                {
+                    holder.btnConvoc.visibility=View.GONE;
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle the error here
+            }
+        })
 
         var dayFormat: SimpleDateFormat = SimpleDateFormat("EEE")
         var dayFormat2: SimpleDateFormat = SimpleDateFormat("dd")
