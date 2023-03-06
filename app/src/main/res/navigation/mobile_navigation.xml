@@ -17,6 +17,16 @@
         tools:layout="@layout/activity_profile"
         />
     <activity
+        android:id="@+id/noteus"
+        android:name="com.example.foottricks.activity.NoteActivity"
+        android:label="Note us"
+        />
+    <activity
+        android:id="@+id/share"
+        android:name="com.example.foottricks.activity.ShareActivity"
+        android:label="Share"
+        />
+    <activity
         android:id="@+id/logout"
         android:name="com.example.foottricks.activity.LogoutActivity"
         android:label="Logout"

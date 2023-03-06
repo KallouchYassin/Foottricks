@@ -16,6 +16,13 @@
         android:theme="@style/Theme.Foottricks"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ShareActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -24,6 +31,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -122,6 +130,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".activity.NoteActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -141,8 +156,6 @@
             android:name=".activity.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

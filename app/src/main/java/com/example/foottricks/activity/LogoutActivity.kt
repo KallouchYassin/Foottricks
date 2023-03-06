@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.foottricks.R
 import com.example.foottricks.databinding.ActivityProfileBinding
+import com.example.foottricks.ui.calendar.CalendarFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -48,6 +49,11 @@ class LogoutActivity: AppCompatActivity() {
                 }
                 noBtn.setOnClickListener {
                     dialog.dismiss()
+                    val fragmentManager = supportFragmentManager
+                    val myFragment = CalendarFragment()
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.add(this@LogoutActivity.taskId, myFragment)
+                    fragmentTransaction.commit()
                 }
                 dialog.show();
 
