@@ -36,7 +36,6 @@ class TeamResultAdapter(
         holder.opponent.text =match.opponent
         holder.result.text = match.result
         holder.date.text = match.begin_date.toString()
-        Log.d("yaya", match.result.toString())
         if(match.result==null)
         {
 
