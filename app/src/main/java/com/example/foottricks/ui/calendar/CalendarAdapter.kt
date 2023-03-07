@@ -56,9 +56,9 @@ class CalendarAdapter(
         var hourOfmatch: TextView = itemView.findViewById(R.id.hourOFmatch)
         var month_txt: TextView = itemView.findViewById(R.id.month_txt)
         var championship_day: TextView = itemView.findViewById(R.id.championship_day)
-        var btnPresent: TextView = itemView.findViewById(R.id.btnPresent)
-        var btnAbsent: TextView = itemView.findViewById(R.id.btnAbsent)
-        var btnConvoc: TextView = itemView.findViewById(R.id.btn_summoning_players)
+        var btnPresent: Button = itemView.findViewById(R.id.btnPresent)
+        var btnAbsent: Button = itemView.findViewById(R.id.btnAbsent)
+        var btnConvoc: Button = itemView.findViewById(R.id.btn_summoning_players)
         val layout1: LinearLayout = view2.findViewById(R.id.layoutListFinished)
 
 
@@ -299,6 +299,8 @@ class CalendarAdapter(
 
 
         holder.btnPresent.setOnClickListener {
+            holder.btnAbsent.visibility=View.GONE
+
             database.reference.child("users").child(user.uuid.toString()).child("present")
                 .setValue(user.present!! +1)
             var databaseRef: DatabaseReference = CalendarAdapter.database.getReference("users")
@@ -343,6 +345,8 @@ class CalendarAdapter(
             notifyDataSetChanged()
         }
         holder.btnAbsent.setOnClickListener {
+            holder.btnPresent.visibility=View.GONE
+
             database.reference.child("users").child(user.uuid.toString()).child("absent")
                 .setValue(user.absent!! +1)
             var databaseRef: DatabaseReference = CalendarAdapter.database.getReference("users")

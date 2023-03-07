@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TeamResultActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activity.TeamResultActivity">
 
     <LinearLayout
         android:id="@+id/layoutResult"
@@ -20,7 +20,9 @@
             android:id="@+id/txtViewTitleFinished"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/gilroy_bold"
+            android:gravity="center"
             android:text="Season results"
             android:textSize="20sp" />
 
